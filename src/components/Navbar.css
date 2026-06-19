@@ -1,0 +1,81 @@
+/* Navbar styles are handled in index.css */
+/* Component-level overrides only */
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: var(--white);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--nav-border);
+  padding: 0 5%;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-img { height: 40px; width: auto; object-fit: contain; }
+
+.nav-links { display: flex; list-style: none; gap: 32px; align-items: center; }
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-nav-muted);
+  font-size: 14px; font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.nav-links a:hover { color: var(--blue); }
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--blue);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  background: var(--blue) !important;
+  color: var(--white) !important;
+  padding: 11px 24px;
+  border-radius: 8px;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 16px var(--blue-glow) !important;
+  border: none !important;
+  transition: all 0.3s ease !important;
+}
+.nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-2px); }
+.nav-cta::after { display: none !important; }
+
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  cursor: pointer; padding: 5px;
+  background: transparent; border: none;
+}
+.hamburger span { display: block; width: 24px; height: 2px; background: #111; border-radius: 2px; transition: 0.3s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none; flex-direction: column;
+  padding: 18px 5% 22px;
+  background: var(--white);
+  border-top: 1px solid #EEEEEE;
+  position: absolute; top: 72px; left: 0; width: 100%;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+}
+.mobile-menu a {
+  text-decoration: none; color: var(--text-nav-muted);
+  font-size: 16px; font-weight: 500;
+  padding: 12px 0; border-bottom: 1px solid #F0F0F0;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--blue); }
+.mobile-menu a:last-child { border-bottom: none; }
+.mobile-menu.open { display: flex; }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+}
